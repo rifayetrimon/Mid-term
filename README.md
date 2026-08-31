@@ -63,6 +63,35 @@ All transaction routes need the header `Authorization: Bearer <token>`.
 /transactions/filter?type=expense&category=Food&minimum_amount=100&maximum_amount=5000
 ```
 
+## Environment Variables
+
+| Name | Default | Description |
+| --- | --- | --- |
+| DATABASE_URL | sqlite:///./expense.db | Database connection string |
+| SECRET_KEY | (local dev value) | Key used to sign the JWT token |
+
+## Deploy on Render
+
+1. Push the project to GitHub.
+2. On Render click **New** and choose **Web Service**, then connect this repository.
+3. Fill the settings:
+   - Runtime: `Python 3`
+   - Build Command: `pip install -r requirements.txt`
+   - Start Command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+4. Add an environment variable `SECRET_KEY` with any long random value.
+5. Click **Create Web Service** and wait for the build to finish.
+
+The repo also has a `render.yaml`, so **New > Blueprint** can be used instead
+and Render will read all the settings from that file.
+
+Live docs after deploy: `https://<service-name>.onrender.com/docs`
+
+Note: the free Render disk is temporary. The SQLite file is created again on
+every deploy or restart, so old users and transactions are cleared. To keep the
+data, create a Render PostgreSQL database and set its connection string as the
+`DATABASE_URL` environment variable (also add `psycopg2-binary` to
+requirements.txt). No code change is needed.
+
 ## Run tests
 
 ```
