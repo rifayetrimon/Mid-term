@@ -23,6 +23,7 @@ FastAPI project with JWT authentication, SQLAlchemy ORM and SQLite database.
 │   │   └── transactions.py    /transactions routes
 │   ├── dependencies.py        get_current_user
 │   └── main.py                app object
+├── render.yaml
 ├── requirements.txt
 └── README.md
 ```
