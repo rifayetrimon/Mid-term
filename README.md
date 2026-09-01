@@ -23,10 +23,6 @@ FastAPI project with JWT authentication, SQLAlchemy ORM and SQLite database.
 │   │   └── transactions.py    /transactions routes
 │   ├── dependencies.py        get_current_user
 │   └── main.py                app object
-├── tests/
-│   ├── conftest.py            test database and fixtures
-│   ├── test_auth.py
-│   └── test_transactions.py
 ├── requirements.txt
 └── README.md
 ```
@@ -91,9 +87,3 @@ every deploy or restart, so old users and transactions are cleared. To keep the
 data, create a Render PostgreSQL database and set its connection string as the
 `DATABASE_URL` environment variable (also add `psycopg2-binary` to
 requirements.txt). No code change is needed.
-
-## Run tests
-
-```
-pytest
-```
